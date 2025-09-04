@@ -1,11 +1,69 @@
 <%- include("partials/header.ejs") %>
 
 
-<form method="POST" action="/submit-form">
-    <input type="text" name="myName">
-    <button type="submit">Submit</button>
-</form>
 
-<h1><%= content.myName%></h1>
+    <% if(!locals.content){ %>
+        <div class="container pt-5 text-center">
+            <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+                <div class="container-fluid py-5">
+                    <h1 class="display-5 fw-bold ">Weather Check</h1>
+                    <p class="col-md-12 fs-4">Please enter the country for which you need the weather</p>
+                    <form method="post" action="/submit_form">
+                        <input class="col-md-6 form-control mb-3" type="text" name="countryName">
 
-<%- include("partials/footer.ejs") %>
+                        <input class="btn btn-primary btn-lg form-control" type="submit" value="Submit">
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+
+        <% }else{ %>
+
+            <div class="container pt-5 text-center">
+                <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+                    <div class="container-fluid py-5">
+                        <h1 class="display-5 fw-bold ">
+                            <%=content.name%>
+                        </h1>
+
+                        <div class="container">
+                            <div class="row">
+                                <p class="col-4 fs-4">Temprature: <%= content.main.temp %>*C  </p>
+                                <p class="col-4 fs-4">Feels Like: <%= content.main.feels_like %>
+                                </p>
+                                <p class="col-4 fs-4">Humidity: <%= content.main.humidity %>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="container">
+                            <div class="row">
+                                <p class="col-4 fs-4">Wind Speed : <%= content.wind.speed %>
+                                </p>
+                                <p class="col-4 fs-4">Wind Deg : <%= content.wind.deg %>
+                                </p>
+                                <p class="col-4 fs-4">Wind Gust : <%= content.wind.gust %>
+                                </p>
+                            </div>
+                        </div>
+ 
+<div class="container">
+    <h1>Check Another Country</h1>
+    <form method="post" action="/submit_form">
+                        <input class="col-md-6 form-control mb-3" type="text" name="countryName">
+
+                        <input class="btn btn-primary btn-lg form-control" type="submit" value="Submit">
+                    </form>
+</div>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <% } %>
+
+
+                <%- include("partials/footer.ejs") %>
