@@ -1,0 +1,11 @@
+<%- include("partials/header.ejs") %>
+
+
+<form method="POST" action="/submit-form">
+    <input type="text" name="myName">
+    <button type="submit">Submit</button>
+</form>
+
+<h1><%= content.myName%></h1>
+
+<%- include("partials/footer.ejs") %>
